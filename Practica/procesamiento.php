@@ -5,17 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://bootswatch.com/5/morph/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>
-        table{
-            border:1px solid black;
-            border-collapse:collapse;
-        }
-        td{
-            border:solid 1px black;
-        }
-        th{
-            border:solid 1px black;
-        }
+        
     </style>
 </head>
 <body>
@@ -152,26 +144,35 @@
 
         /* El value de los input de tipo radio es el name de los input de tipo texto, para luego poder almacenar la cadena introducida por el usuario */
         echo '
-            <form action="#" method="post" enctype="multipart/form-data">
-                <input type="text" name="t1" placeholder="Introduce el texto 1"><br>
-                <input type="text" name="t2" placeholder="Introduce el texto 2"><br>
-                <input type="text" name="t3" placeholder="Introduce el texto 3"><br>
-                <input type="text" name="t4" placeholder="Introduce el texto 4"><br>
-                <input type="text" name="t5" placeholder="Introduce el texto 5"><br>
-                <input type="text" name="t6" placeholder="Introduce el texto 6"><br>
-                <input type="text" name="t7" placeholder="Introduce el texto 7"><br>
-                <label for="img">Introduce una imagen:</label><br>
-                <input type="file" name="img" accept="image/*" required><br>
-                <label for="">Qué cadena quieres seleccionar?:</label><br>
-                Cadena 1:<input type="radio" name="rad" value="t1" required><br>
-                Cadena 2:<input type="radio" name="rad" value="t2" required><br>
-                Cadena 3:<input type="radio" name="rad" value="t3" required><br>
-                Cadena 4:<input type="radio" name="rad" value="t4" required><br>
-                Cadena 5:<input type="radio" name="rad" value="t5" required><br>
-                Cadena 6:<input type="radio" name="rad" value="t6" required><br>
-                Cadena 7:<input type="radio" name="rad" value="t7" required><br>
-                <input type="submit" value="Enviar" name="textos">
-            </form>
+            <div class="form-container">
+                <form action="#" method="post" enctype="multipart/form-data">
+                    <label for="t1">Introduce el texto 1:</label><br>
+                    <input type="text" name="t1" placeholder="Texto 1"><br>
+                    <label for="t2">Introduce el texto 2:</label><br>
+                    <input type="text" name="t2" placeholder="Texto 2"><br>
+                    <label for="t3">Introduce el texto 3:</label><br>
+                    <input type="text" name="t3" placeholder="Texto 3"><br>
+                    <label for="t4">Introduce el texto 4:</label><br>
+                    <input type="text" name="t4" placeholder="Texto 4"><br>
+                    <label for="t5">Introduce el texto 5:</label><br>
+                    <input type="text" name="t5" placeholder="Texto 5"><br>
+                    <label for="t6">Introduce el texto 6:</label><br>
+                    <input type="text" name="t6" placeholder="Texto 6"><br>
+                    <label for="t7">Introduce el texto 7:</label><br>
+                    <input type="text" name="t7" placeholder="Texto 7"><br>
+                    <label for="img" class="img">Introduce una imagen:</label><br>
+                    <input type="file" name="img" accept="image/*" required><br>
+                    <label for="rad" class="form-check-label">Qué cadena quieres seleccionar?:</label><br>
+                    Cadena 1:<input type="radio" class="form-check-input bg-black" name="rad" value="t1" required><br>
+                    Cadena 2:<input type="radio" name="rad" value="t2" required><br>
+                    Cadena 3:<input type="radio" name="rad" value="t3" required><br>
+                    Cadena 4:<input type="radio" name="rad" value="t4" required><br>
+                    Cadena 5:<input type="radio" name="rad" value="t5" required><br>
+                    Cadena 6:<input type="radio" name="rad" value="t6" required><br>
+                    Cadena 7:<input type="radio" name="rad" value="t7" required><br>
+                    <input type="submit" value="Enviar" name="textos">
+                </form>
+            </div>
         ';
 
         // if(isset($_GET["err"])){
