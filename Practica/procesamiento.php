@@ -13,6 +13,9 @@
         td{
             border:solid 1px black;
         }
+        th{
+            border:solid 1px black;
+        }
     </style>
 </head>
 <body>
@@ -103,8 +106,9 @@
                     //^(?=.*[A-Z])(?=.*[0-9].*[0-9])(?=.*[^\d^\w^\W].*[^\d^\w^\W].*[^\d^\w^\W])(){8,20}$   BUENA
                 }
 
-                echo "<tr><td>$key</td><td>".implode(",",$categorias)."</td></tr>";//Se hace implode para unir las categorias y separarlas mediante , .Así salen todas las categorias en un único td
-                
+                if ($key !== "rad" && $key !== "textos") { // Condición para omitir "rad" y "textos"
+                    echo "<tr><td>$input</td><td>".implode(",",$categorias)."</td></tr>";//Se hace implode para unir las categorias y separarlas mediante , .Así salen todas las categorias en un único td
+                }
 
                 //RESULTADOS DE INPUT RADIO
                 $seleccionRadio=$_POST["rad"];//Almaceno el radio seleccionado por el usuario (Almaceno el value, que es el name de los input de tipo texto)
