@@ -38,6 +38,7 @@ form input[type="text"]{
     margin: 10px 0;
     width: 100%;
     text-align: center;   
+    color: white !important;
 }
 
 form input[type="file"]{
@@ -53,13 +54,37 @@ form input[type="file"]{
     text-align: center; 
 }
 
+form input[type="radio"]{
+   margin-left: 10px;
+}
 
+form input[type="submit"]{
+    background-color: transparent;
+    border-bottom:none;
+    border-right: none;
+    box-shadow: 10px 5px 11px rgb(14, 14, 14),
+     -0px -1px 10px rgba(112, 112, 112, 0.5);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    text-align: center;  
+    color: white;
+}
 
 
     /* TABLA */
+div{
+    width: 50%;
+    text-align: center;
+    margin-top: 50px;
+}
 table{
     border:0.5px solid rgb(255, 255, 255);
     border-collapse:collapse;
+    margin: auto;
+    font-size: 20px;
+    width: 60%;
 }
 
 td{

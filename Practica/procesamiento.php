@@ -26,16 +26,13 @@
            
         //Si no ha seleccionado un radio ni una foto, que salga un error
 
-        //    if(!isset($imagen)){
-        //         header("Location: $ubi?err=1");
-        //    }elseif (!isset($radio)) {
-        //         header("Location: $ubi?err=2");
-        //    }elseif (!isset($radio) && !isset($imagen)) {
-        //         header("Location: $ubi?err=3");
-        //     };
+           if (!isset($radio)) {
+                header("Location: $ubi?err=2");
+           };
         
             
         //TABLA
+        echo "<div>";
         echo "<table>";
         echo "<tr><th>Cadena Evaluada</th><th>Categorías</th></tr>";
             foreach ($form as $key => $input) {
@@ -46,13 +43,13 @@
                    $categorias[]="Cadena vacía";
                 }
                 
-                //Cadena única. TAMBIÉN ME TIENE QUE PILLAR EL NÚMERO DE TELÉFONO COMO CADENA ÚNBICA
+                //Cadena única.
                 if(preg_match("'\s?+[a-zA-Z]+\s*'",$input)){
                     $categorias[]="Cadena con una única palabra";
                 }
                 
                 
-                //Cadena con dos palabras. TAMBIÉN TIENE QUE PILLA EL NUMERO DE TELEFONO, DNI , ETC
+                //Cadena con dos palabras.
                 if(preg_match("'\s*[a-zA-Z]+\s+[a-zA-Z0-9]+\s*'",$input)){
                     $categorias[]="Cadena con dos palabras";
                 }
@@ -68,8 +65,6 @@
                 if(preg_match("'(?<!\d)\d+\.\d+(?!\d)'",$input)){//hola23,14
                     $categorias[]="Cadena con número decimal";
                 }
-
-                //PUEDE SER DECIMAL E IMPAR AL MISMO TIEMPO Y TELÉFONO E IMPAR AL MISMO TIEMPO. La parte entera DEL NÚMERO DECIMAL ES LA IMPAR
 
                 //Cadena con un único número impar
                 if(preg_match("'^[^0-9]*[0-9]*[13579](\.[0-9]+)?[^0-9]*$'",$input)){
@@ -93,9 +88,11 @@
                 //^(?=.*[A-Z])(?=(?:[^0-9]*[0-9]){2})(?=(?:[^!@#$%^&*()_+]*[!@#$%^&*()_+]){3})[A-Za-z0-9!@#$%^&*()_+]{8,20}$
                 if(preg_match("'^(?=.*[A-Z])(?=(?:[^0-9]*[0-9]){2})(?=(?:[^!@#$%^&*()_+]*[!@#$%^&*()_+]){3})[A-Za-z0-9!@#$%^&*()_+]{8,20}$'",$input)){
                     $categorias[]="Contraseña";
-                    // ^(?=.[0-9]{2})(?=.[A-Z])(?=.*[\W_]{3}).{8,20}$
-                    //^(?=.*[A-Z])(?=.*[0-9].*[0-9])(?=.*[\W].*[\W_].*[\W_]){8,20}$
                     //^(?=.*[A-Z])(?=.*[0-9].*[0-9])(?=.*[^\d^\w^\W].*[^\d^\w^\W].*[^\d^\w^\W])(){8,20}$   BUENA
+                }
+
+                if(empty($categorias)){
+                    $categorias[]="Formato desconocido";
                 }
 
                 if ($key !== "rad" && $key !== "textos") { // Condición para omitir "rad" y "textos"
@@ -108,6 +105,7 @@
 
             }
         echo "</table>";
+        echo "<div>";
 
         //GUARDAR LA IMÁGEN Y CAMBIAR EL NOMBRE
         $ruta="./img/";
@@ -163,23 +161,25 @@
                     <label for="img" class="img">Introduce una imagen:</label><br>
                     <input type="file" name="img" accept="image/*" required><br>
                     <label for="rad" class="form-check-label">Qué cadena quieres seleccionar?:</label><br>
-                    Cadena 1:<input type="radio" class="form-check-input bg-black" name="rad" value="t1" required><br>
-                    Cadena 2:<input type="radio" name="rad" value="t2" required><br>
-                    Cadena 3:<input type="radio" name="rad" value="t3" required><br>
-                    Cadena 4:<input type="radio" name="rad" value="t4" required><br>
-                    Cadena 5:<input type="radio" name="rad" value="t5" required><br>
-                    Cadena 6:<input type="radio" name="rad" value="t6" required><br>
-                    Cadena 7:<input type="radio" name="rad" value="t7" required><br>
+                    Cadena 1:<input type="radio" class="form-check-input bg-black" name="rad" value="t1"><br>
+                    Cadena 2:<input type="radio" class="form-check-input bg-black" name="rad" value="t2"><br>
+                    Cadena 3:<input type="radio" class="form-check-input bg-black" name="rad" value="t3"><br>
+                    Cadena 4:<input type="radio" class="form-check-input bg-black" name="rad" value="t4"><br>
+                    Cadena 5:<input type="radio" class="form-check-input bg-black" name="rad" value="t5"><br>
+                    Cadena 6:<input type="radio" class="form-check-input bg-black" name="rad" value="t6"><br>
+                    Cadena 7:<input type="radio" class="form-check-input bg-black" name="rad" value="t7"><br>';
+
+                    if(isset($_GET["err"])){
+                        if($_GET["err"] == 2) echo "<p style=\"color:red\">Selecciona una cadena</p>";
+                    }
+
+                    echo '
                     <input type="submit" value="Enviar" name="textos">
                 </form>
             </div>
         ';
 
-        // if(isset($_GET["err"])){
-        //     if($_GET["err"] == 1) echo "<p style=\"color:red\">Introduce la imagen</p>";
-        //     if($_GET["err"] == 2) echo "<p style=\"color:red\">Selecciona una cadena</p>";
-        //     if($_GET["err"] == 3) echo "<p style=\"color:red\">Introduce una imagen y selecciona una cadena</p>";
-        // }
+    
     }
 
     ?>
